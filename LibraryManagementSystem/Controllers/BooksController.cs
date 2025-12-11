@@ -6,14 +6,15 @@ namespace LibraryManagementSystem.Controllers
 {
     public class BooksController : Controller
     {
+        #region Context Injection
         private readonly LibraryContext _context;
-        // Injecting the LibraryContext and Logger to interact with the database and log events.
         public BooksController(LibraryContext context)
         {
             _context = context;
         }
-        // Retrieves and displays all books.
-        // GET: Books
+        #endregion
+
+        #region Index Page/ Landing Page
         public async Task<IActionResult> Index()
         {
             try
@@ -29,7 +30,9 @@ namespace LibraryManagementSystem.Controllers
                 return View("Error");
             }
         }
-        // GET: Books/Details/1
+        #endregion
+
+        #region Get Details by ID
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || id == 0)
@@ -54,12 +57,14 @@ namespace LibraryManagementSystem.Controllers
                 return View("Error");
             }
         }
-        // GET: Books/Create
+        #endregion
+
+        #region Create Entry
         public IActionResult Create()
         {
             return View();
         }
-        // POST: Books/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BookModel book)
@@ -82,7 +87,9 @@ namespace LibraryManagementSystem.Controllers
             }
             return View(book);
         }
-        // GET: Books/Edit/1
+        #endregion
+
+        #region Edit Book Details by ID
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || id == 0)
@@ -106,7 +113,7 @@ namespace LibraryManagementSystem.Controllers
                 return View("Error");
             }
         }
-        // POST: Books/Edit/1
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, BookModel book)
@@ -126,7 +133,6 @@ namespace LibraryManagementSystem.Controllers
                         TempData["ErrorMessage"] = $"No book found with ID {id} for updating.";
                         return View("NotFound");
                     }
-                    // Updating fields that can be edited
                     existingBook.Title = book.Title;
                     existingBook.Author = book.Author;
                     existingBook.ISBN = book.ISBN;
@@ -156,7 +162,9 @@ namespace LibraryManagementSystem.Controllers
             }
             return View(book);
         }
-        // GET: Books/Delete/1
+        #endregion
+
+        #region Delete Book 
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
@@ -182,7 +190,7 @@ namespace LibraryManagementSystem.Controllers
                 return View("Error");
             }
         }
-        // POST: Books/Delete/1
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -206,9 +214,13 @@ namespace LibraryManagementSystem.Controllers
                 return View("Error");
             }
         }
+        #endregion
+
+        #region Book Details Existence
         private bool BookExists(int id)
         {
             return _context.Books.Any(e => e.BookId == id);
         }
+        #endregion
     }
 }

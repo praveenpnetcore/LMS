@@ -1,2 +1,20 @@
 # LMS
-LibraryManagementSystem
+LibraryManagementSystem(CRUD OPERATION)
+
+APPROACH USED TO CREATE APPLICATION:
+--> CODE FIRST APPROACH
+
+Tech Stack:
+TECH: ASP.NET CORE MVC(version: 7.0.1)
+DATABASE: MS-SQL SERVER
+ORM: ENTITYFRAMEWORK CORE(version: 7.0.1)
+FRONT-END: RAZOR VIEWS WITH .NET CORE
+
+SETUP:
+1. CLONE APPLICATION FROM: https://github.com/praveenpnetcore/LMS.git 
+2. ADD your local CONNECTIONSTRING IN appsettings.json FILE
+3. RUN DB MIGRATION FOR DATABASE AND TABLE CREATION(ALREADY CREATED SEEDING DATA IN CODE)
+4. FOLLOW: Tools --> Nuget Package Manager --> Package Manager Console
+5. WRITE COMMAND TO EXECUTE: dotnet ef database update
+6. RUN APPLICATION.
+
