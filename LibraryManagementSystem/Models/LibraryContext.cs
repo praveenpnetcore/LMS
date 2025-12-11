@@ -54,7 +54,7 @@ namespace LibraryManagementSystem.Models
                     Author = "Jon P Smith",
                     ISBN = "978-1617294563",
                     PublishedDate = new DateTime(2019, 5, 20),
-                    IsAvailable = true
+                    IsAvailable = false
                 }
             );
         }
